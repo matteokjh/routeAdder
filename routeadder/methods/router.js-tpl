@@ -1,0 +1,21 @@
+import Vue from 'vue';
+import Router from 'vue-router';
+{{ get (compo, idx) >>>> compo_list }}
+import {{ compo.name }} from '{{ compo.path }}';
+{{ teg }}
+
+Vue.use(Router);
+
+let routes = [
+    {{ get (compo, idx) >>>> compo_list }}
+    {
+        path: '/{{ pathProcess compo.name }}', 
+        name: '{{ compo.name }}',
+        component: {{ compo.name }}
+    }{{ shouldAddDot compo_list idx }}
+    {{ teg }}
+];
+
+export default new Router({
+    routes
+});
