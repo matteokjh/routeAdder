@@ -15,7 +15,7 @@ const tpl = require('tplser')
 function routerGenerator(target){
     return fs.readdir(COMPONENT_BASE).then(vue_files => {
         let compo_list = vue_files.map(vue_file => {
-            let { name } = path.parse(vue_file); 
+            let { name } = path.parse(vue_file);
 
             return {
                 name: name, 
@@ -26,7 +26,7 @@ function routerGenerator(target){
         let routerFileStr = routerRender({
             compo_list: compo_list,
             pathProcess: e => {
-                let temp = e.toLowerCase(); 
+                let temp = e.toLowerCase();
                 return temp === 'index' ? '' : temp; 
             },
             shouldAddDot: (list, now_idx) => (
@@ -34,11 +34,12 @@ function routerGenerator(target){
             )
         });
 
-        return fs.writeFile(
+        fs.writeFile(
             target, routerFileStr
         ); 
         
-    });
+    })
+
 }
 
 module.exports = routerGenerator; 

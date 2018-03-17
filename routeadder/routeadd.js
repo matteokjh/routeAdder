@@ -1,7 +1,7 @@
 // routeadd.js
-
-let routerGenerator = require('./methods/routerGenerator.js');
 let routeFile = require('./methods/routeToFile.js');
+let routerGenerator = require('./methods/routerGenerator.js');
+
 
 var argv;
 try {   
@@ -11,17 +11,5 @@ try {
 }
 console.log('argv : '+argv[2]);
 var reg = /^[0-9a-zA-Z]+$/;
-argv[2] === undefined ? console.log("undefined!") : ( reg.test(argv[2]) ? routeFile(argv[2]) : console.log("illegal input!"));
-
-console.log("before:\n");
-routerGenerator('./src/router/index.js').then(e => {
-    
-}, e => {
-    console.log(e);
-});
-console.log("after:\n");
-routerGenerator('./src/router/index.js').then(e => {
-    console.log("2.Generate route succeed!");
-}, e => {
-    console.log(e);
-});
+argv[2] === undefined ? console.log("undefined!") : 
+    ( reg.test(argv[2]) ? routeFile(argv[2]).then( _ => {routerGenerator('./src/router/index.js')}) : console.log("illegal input!") );
