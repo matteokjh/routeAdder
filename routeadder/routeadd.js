@@ -13,6 +13,13 @@ console.log('argv : '+argv[2]);
 var reg = /^[0-9a-zA-Z]+$/;
 argv[2] === undefined ? console.log("undefined!") : ( reg.test(argv[2]) ? routeFile(argv[2]) : console.log("illegal input!"));
 
+console.log("before:\n");
+routerGenerator('./src/router/index.js').then(e => {
+    
+}, e => {
+    console.log(e);
+});
+console.log("after:\n");
 routerGenerator('./src/router/index.js').then(e => {
     console.log("2.Generate route succeed!");
 }, e => {
